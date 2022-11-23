@@ -19,7 +19,7 @@ const userSchema = new Schema({
             validator: function (value) {
                 return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/.test(value);  //expressao regular (regex)
             },
-            message: "Password must have special caracters and capital letters"
+            message: "Password must have capital letters"
         }
     }
 })
