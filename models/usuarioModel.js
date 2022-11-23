@@ -12,7 +12,7 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: [true, "Enter a password"],
+        required: [true, "Insira a senha"],
         trim: true,
         select: false,
         validate: {
