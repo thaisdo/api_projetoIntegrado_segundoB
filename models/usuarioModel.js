@@ -6,23 +6,23 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
     email: {
         type: String,
-        required: [true, "Enter a valid username"],
+        required: [true, "E-mail ou senha inválidos"],
         trim: true,
         unique: true
     },
-    password: {
+    senha: {
         type: String,
-        required: [true, "Enter a password"],
+        required: [true, "E-mail ou senha inválidos"],
         trim: true,
         select: false,
         validate: {
             validator: function (value) {
-                return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/.test(value);  //expressao regular (regex)
+                return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/.test(value);
             },
-            message: "A senha precisa conter caracteres especiais, mínimo 8 letras"
+            message: "A senha precisa conter caracteres especiais e pelo o menos uma letra maiúscula"
         }
     }
-})
+});
 
 userSchema.pre("save", (next) => {
     const hash = bcrypt.hashSync(this.password, 8);
@@ -30,4 +30,4 @@ userSchema.pre("save", (next) => {
     next();
 });
 
-module.exports = mongoose.model("Usuario", userSchema);
+module.exports = mongoose.model("User", userSchema);
